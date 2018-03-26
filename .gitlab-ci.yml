@@ -1,0 +1,8 @@
+image: abaez/luarocks:latest
+
+before_script:
+- luarocks install luaunit
+
+test:
+  script:
+  - lua test.lua -v
