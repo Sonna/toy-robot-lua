@@ -54,7 +54,7 @@ end
 
 function Robot:place(rawCoordinates)
   local coordinates = split(rawCoordinates, "[^,]*") -- everything except commas
-  if coordinates[0] ~= nil then -- A strange fix for different gsub Lua versions
+  if coordinates[5] ~= nil then -- A strange fix for different gsub Lua versions
     self.x = tonumber(coordinates[1])
     self.y = tonumber(coordinates[3])
     self.facing = coordinates[5]
