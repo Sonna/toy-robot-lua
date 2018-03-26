@@ -58,9 +58,15 @@ end
 
 function Robot:place(rawCoordinates)
   local coordinates = split(rawCoordinates, "[^,]*") -- everything except commas
-  self.x = tonumber(coordinates[1])
-  self.y = tonumber(coordinates[3])
-  self.facing = coordinates[5]
+  if coordinates[0] ~= nil then -- A strange fix for different gsub Lua versions
+    self.x = tonumber(coordinates[1])
+    self.y = tonumber(coordinates[3])
+    self.facing = coordinates[5]
+  else
+    self.x = tonumber(coordinates[1])
+    self.y = tonumber(coordinates[2])
+    self.facing = coordinates[3]
+  end
 end
 
 function Robot:exec(rawCommand, rawArgs)
