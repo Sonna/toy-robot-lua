@@ -201,4 +201,22 @@ TestRobot = {}
       lu.assertEquals(subject.y, 1)
       lu.assertEquals(subject.facing, "SOUTH")
     end
+
+    function TestRobot:testPlace()
+      local subject = Robot:new()
+      subject:place("1,2,WEST")
+
+      lu.assertEquals(subject.x, 1)
+      lu.assertEquals(subject.y, 2)
+      lu.assertEquals(subject.facing, "WEST")
+    end
+
+    function TestRobot:testPlace43NORTH()
+      local subject = Robot:new()
+      subject:place("4,3,NORTH")
+
+      lu.assertEquals(subject.x, 4)
+      lu.assertEquals(subject.y, 3)
+      lu.assertEquals(subject.facing, "NORTH")
+    end
 -- end TestRobot
