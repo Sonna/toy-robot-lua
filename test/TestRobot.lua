@@ -46,7 +46,7 @@ TestRobot = {}
       local subject = Robot:new()
       subject:left()
       lu.assertEquals(subject.facing, "WEST",
-        "`subject.faicng' was not updated")
+        "`subject.facing' was not updated")
       lu.assertEquals(subject.x, 0)
       lu.assertEquals(subject.y, 0)
     end
@@ -55,7 +55,7 @@ TestRobot = {}
       local subject = Robot:new(nil, 0, 0, "WEST")
       subject:left()
       lu.assertEquals(subject.facing, "SOUTH",
-        "`subject.faicng' was not updated")
+        "`subject.facing' was not updated")
       lu.assertEquals(subject.x, 0)
       lu.assertEquals(subject.y, 0)
     end
@@ -64,7 +64,7 @@ TestRobot = {}
       local subject = Robot:new(nil, 0, 0, "SOUTH")
       subject:left()
       lu.assertEquals(subject.facing, "EAST",
-        "`subject.faicng' was not updated")
+        "`subject.facing' was not updated")
       lu.assertEquals(subject.x, 0)
       lu.assertEquals(subject.y, 0)
     end
@@ -73,7 +73,7 @@ TestRobot = {}
       local subject = Robot:new(nil, 0, 0, "EAST")
       subject:left()
       lu.assertEquals(subject.facing, "NORTH",
-        "`subject.faicng' was not updated")
+        "`subject.facing' was not updated")
       lu.assertEquals(subject.x, 0)
       lu.assertEquals(subject.y, 0)
     end
@@ -82,7 +82,7 @@ TestRobot = {}
       local subject = Robot:new()
       subject:right()
       lu.assertEquals(subject.facing, "EAST",
-        "`subject.faicng' was not updated")
+        "`subject.facing' was not updated")
       lu.assertEquals(subject.x, 0)
       lu.assertEquals(subject.y, 0)
     end
@@ -91,7 +91,7 @@ TestRobot = {}
       local subject = Robot:new(nil, 0, 0, "EAST")
       subject:right()
       lu.assertEquals(subject.facing, "SOUTH",
-        "`subject.faicng' was not updated")
+        "`subject.facing' was not updated")
       lu.assertEquals(subject.x, 0)
       lu.assertEquals(subject.y, 0)
     end
@@ -100,7 +100,7 @@ TestRobot = {}
       local subject = Robot:new(nil, 0, 0, "SOUTH")
       subject:right()
       lu.assertEquals(subject.facing, "WEST",
-        "`subject.faicng' was not updated")
+        "`subject.facing' was not updated")
       lu.assertEquals(subject.x, 0)
       lu.assertEquals(subject.y, 0)
     end
@@ -109,8 +109,96 @@ TestRobot = {}
       local subject = Robot:new(nil, 0, 0, "WEST")
       subject:right()
       lu.assertEquals(subject.facing, "NORTH",
-        "`subject.faicng' was not updated")
+        "`subject.facing' was not updated")
       lu.assertEquals(subject.x, 0)
       lu.assertEquals(subject.y, 0)
+    end
+
+    function TestRobot:testMove()
+      local subject = Robot:new()
+      subject:move()
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 1)
+      lu.assertEquals(subject.facing, "NORTH")
+    end
+
+    function TestRobot:testMoveEAST()
+      local subject = Robot:new(nil, 0, 0, "EAST")
+      subject:move()
+      lu.assertEquals(subject.x, 1)
+      lu.assertEquals(subject.y, 0)
+      lu.assertEquals(subject.facing, "EAST")
+    end
+
+    function TestRobot:testMoveSOUTH()
+      local subject = Robot:new(nil, 0, 0, "SOUTH")
+      subject:move()
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 0)
+      lu.assertEquals(subject.facing, "SOUTH")
+    end
+
+    function TestRobot:testMoveWEST()
+      local subject = Robot:new(nil, 0, 0, "WEST")
+      subject:move()
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 0)
+      lu.assertEquals(subject.facing, "WEST")
+    end
+
+    function TestRobot:testMoveDoesNotFallOffAt04WEST()
+      local subject = Robot:new(nil, 0, 4, "WEST")
+      subject:move()
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 4)
+      lu.assertEquals(subject.facing, "WEST")
+    end
+
+    function TestRobot:testMoveDoesNotFallOffAt04NORTH()
+      local subject = Robot:new(nil, 0, 4, "NORTH")
+      subject:move()
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 4)
+      lu.assertEquals(subject.facing, "NORTH")
+    end
+
+    function TestRobot:testMoveDoesNotFallOffAt44NORTH()
+      local subject = Robot:new(nil, 4, 4, "NORTH")
+      subject:move()
+      lu.assertEquals(subject.x, 4)
+      lu.assertEquals(subject.y, 4)
+      lu.assertEquals(subject.facing, "NORTH")
+    end
+
+    function TestRobot:testMoveDoesNotFallOffAt44EAST()
+      local subject = Robot:new(nil, 4, 4, "EAST")
+      subject:move()
+      lu.assertEquals(subject.x, 4)
+      lu.assertEquals(subject.y, 4)
+      lu.assertEquals(subject.facing, "EAST")
+    end
+
+    function TestRobot:testMoveDoesNotFallOffAt40EAST()
+      local subject = Robot:new(nil, 4, 0, "EAST")
+      subject:move()
+      lu.assertEquals(subject.x, 4)
+      lu.assertEquals(subject.y, 0)
+      lu.assertEquals(subject.facing, "EAST")
+    end
+
+    function TestRobot:testMoveDoesNotFallOffAt40SOUTH()
+      local subject = Robot:new(nil, 4, 0, "SOUTH")
+      subject:move()
+      lu.assertEquals(subject.x, 4)
+      lu.assertEquals(subject.y, 0)
+      lu.assertEquals(subject.facing, "SOUTH")
+    end
+
+    function TestRobot:testMovesInMiddleOfTable()
+      local subject = Robot:new(nil, 2, 2, "SOUTH")
+      subject:move()
+      lu.assertEquals(subject.x, 2)
+      lu.assertEquals(subject.y, 1)
+      lu.assertEquals(subject.facing, "SOUTH")
     end
 -- end TestRobot

@@ -5,6 +5,13 @@ local TURN = {
   WEST = { LEFT = "SOUTH", RIGHT = "NORTH" },
 }
 
+local MOVE = {
+  NORTH = { x = 0, y = 1 },
+  SOUTH = { x = 0, y = -1 },
+  EAST = { x = 1, y = 0 },
+  WEST = { x = -1, y = 0 },
+}
+
 Robot = {x = 0, y = 0, facing = "NORTH"}
 
 function Robot:new(o, x, y, facing)
@@ -27,6 +34,19 @@ end
 
 function Robot:right()
   self.facing = TURN[self.facing]["RIGHT"]
+end
+
+function Robot:move()
+  self.x = self.x + MOVE[self.facing].x
+  self.y = self.y + MOVE[self.facing].y
+
+  if self.x < 0 or self.x > 4 then
+    self.x = self.x - MOVE[self.facing].x
+  end
+
+  if self.y < 0 or self.y > 4 then
+    self.y = self.y - MOVE[self.facing].y
+  end
 end
 
 return Robot
