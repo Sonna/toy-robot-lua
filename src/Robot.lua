@@ -28,7 +28,7 @@ function Robot:new(o, x, y, facing)
 end
 
 function Robot:report()
-  return print(self.x .. ',' .. self.x .. ',' .. self.facing)
+  return print(self.x .. ',' .. self.y .. ',' .. self.facing)
 end
 
 function Robot:left()
