@@ -63,4 +63,15 @@ function Robot:place(rawCoordinates)
   self.facing = coordinates[5]
 end
 
+function Robot:exec(rawCommand, rawArgs)
+  local case = {
+    ["PLACE"] = function() return self:place(rawArgs) end,
+    ["MOVE"] = function() return self:move() end,
+    ["REPORT"] = function() return self:report() end,
+    ["LEFT"] = function() return self:left() end,
+    ["RIGHT"] = function() return self:right() end,
+  }
+  return case[rawCommand]()
+end
+
 return Robot

@@ -219,4 +219,53 @@ TestRobot = {}
       lu.assertEquals(subject.y, 3)
       lu.assertEquals(subject.facing, "NORTH")
     end
+
+    function TestRobot:testExecPlace()
+      local subject = Robot:new()
+      subject:exec("PLACE", "4,3,NORTH")
+
+      lu.assertEquals(subject.x, 4)
+      lu.assertEquals(subject.y, 3)
+      lu.assertEquals(subject.facing, "NORTH")
+    end
+
+    function TestRobot:testExecMove()
+      local subject = Robot:new()
+      subject:exec("MOVE", "")
+
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 1)
+      lu.assertEquals(subject.facing, "NORTH")
+    end
+
+    function TestRobot:testExecReport()
+      local subject = Robot:new()
+      local result =
+        capture_output(function() return subject:exec("REPORT", "") end)
+
+      lu.assertEquals(result, "0,0,NORTH",
+        "`subject.place('REPORT', '') was not captured")
+
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 0)
+      lu.assertEquals(subject.facing, "NORTH")
+    end
+
+    function TestRobot:testExecLeft()
+      local subject = Robot:new()
+      subject:exec("LEFT", "")
+
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 0)
+      lu.assertEquals(subject.facing, "WEST")
+    end
+
+    function TestRobot:testExecRight()
+      local subject = Robot:new()
+      subject:exec("RIGHT", "")
+
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 0)
+      lu.assertEquals(subject.facing, "EAST")
+    end
 -- end TestRobot
