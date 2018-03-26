@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  test:
+    docker:
+    - image: abaez/luarocks:latest
+    steps:
+    - checkout
+    - run: luarocks install luaunit
+    - run: lua test.lua -v
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+    - test
