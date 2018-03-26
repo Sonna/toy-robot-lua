@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
 lua test.lua -v
+
+# To run tests with a known Docker image:
+#
+#     docker run --rm -v $(pwd):/app -w /app abaez/luarocks \
+#       sh -c "luarocks install luaunit; lua test.lua -v"
+#
