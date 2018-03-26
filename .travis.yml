@@ -1,0 +1,13 @@
+sudo: required
+
+language: lua
+
+services:
+- docker
+
+before_install:
+- docker pull abaez/luarocks
+
+script:
+- docker run --rm -v $(pwd):/app -w /app abaez/luarocks bash -c "luarocks install luaunit"
+- docker run --rm -v $(pwd):/app -w /app abaez/luarocks bash -c "lua test.lua -v"
