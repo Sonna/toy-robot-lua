@@ -1,3 +1,6 @@
+local util = require("src/util")
+local split = util.split
+
 local TURN = {
   NORTH = { LEFT = "WEST", RIGHT = "EAST" },
   EAST = { LEFT = "NORTH", RIGHT = "SOUTH" },
@@ -11,13 +14,6 @@ local MOVE = {
   EAST = { x = 1, y = 0 },
   WEST = { x = -1, y = 0 },
 }
-
---- splits 'rawString' into pieces matching 'pattern', returns them as an array
-local function split(rawString, pattern)
-  local resultTable={}
-  rawString:gsub(pattern, function(x) resultTable[#resultTable + 1] = x end)
-  return resultTable
-end
 
 Robot = {x = 0, y = 0, facing = "NORTH"}
 
