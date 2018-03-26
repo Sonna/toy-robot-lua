@@ -1,3 +1,10 @@
+local TURN = {
+  NORTH = { LEFT = "WEST", RIGHT = "EAST" },
+  EAST = { LEFT = "NORTH", RIGHT = "SOUTH" },
+  SOUTH = { LEFT = "EAST", RIGHT = "WEST" },
+  WEST = { LEFT = "SOUTH", RIGHT = "NORTH" },
+}
+
 Robot = {x = 0, y = 0, facing = "NORTH"}
 
 function Robot:new(o, x, y, facing)
@@ -12,6 +19,10 @@ end
 
 function Robot:report()
   return print(self.x .. ',' .. self.x .. ',' .. self.facing)
+end
+
+function Robot:left()
+  self.facing = TURN[self.facing]["LEFT"]
 end
 
 return Robot

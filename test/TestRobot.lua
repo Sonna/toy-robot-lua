@@ -41,4 +41,40 @@ TestRobot = {}
 
       lu.assertEquals(result, "0,0,NORTH", "`subject.report' was not captured")
     end
+
+    function TestRobot:testLeft()
+      local subject = Robot:new()
+      subject:left()
+      lu.assertEquals(subject.facing, "WEST",
+        "`subject.faicng' was not updated")
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 0)
+    end
+
+    function TestRobot:testLeftFromWEST()
+      local subject = Robot:new(nil, 0, 0, "WEST")
+      subject:left()
+      lu.assertEquals(subject.facing, "SOUTH",
+        "`subject.faicng' was not updated")
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 0)
+    end
+
+    function TestRobot:testLeftFromSOUTH()
+      local subject = Robot:new(nil, 0, 0, "SOUTH")
+      subject:left()
+      lu.assertEquals(subject.facing, "EAST",
+        "`subject.faicng' was not updated")
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 0)
+    end
+
+    function TestRobot:testLeftFromEAST()
+      local subject = Robot:new(nil, 0, 0, "EAST")
+      subject:left()
+      lu.assertEquals(subject.facing, "NORTH",
+        "`subject.faicng' was not updated")
+      lu.assertEquals(subject.x, 0)
+      lu.assertEquals(subject.y, 0)
+    end
 -- end TestRobot
