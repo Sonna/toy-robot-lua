@@ -25,4 +25,8 @@ function Robot:left()
   self.facing = TURN[self.facing]["LEFT"]
 end
 
+function Robot:right()
+  self.facing = TURN[self.facing]["RIGHT"]
+end
+
 return Robot
