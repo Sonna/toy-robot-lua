@@ -73,7 +73,12 @@ function Robot:exec(rawCommand, rawArgs)
     ["LEFT"] = function() return self:left() end,
     ["RIGHT"] = function() return self:right() end,
   }
-  return case[rawCommand]()
+
+  if case[rawCommand] ~= nil then
+    return case[rawCommand]()
+  else
+    return ""
+  end
 end
 
 return Robot
