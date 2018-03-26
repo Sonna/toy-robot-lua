@@ -2,7 +2,6 @@ lu = require('luaunit')
 
 local test_helpers = require("test/test_helpers")
 local capture_output = test_helpers.capture_output
--- require("test/test_helpers")
 local Rectangle = require("src/simple_class")
 
 TestSimpleClass = {}
@@ -33,7 +32,3 @@ TestSimpleClass = {}
       lu.assertEquals(result, "The area of Rectangle is 200", "`r.printArea' was not captured")
     end
 -- end TestSimpleClass
-
--- return TestSimpleClass
-
--- os.exit( lu.LuaUnit.run() )
