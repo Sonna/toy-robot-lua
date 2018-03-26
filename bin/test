@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# lunit test.lua
+# lunit test/*_test.lua
+
+
+lua test.lua -v
